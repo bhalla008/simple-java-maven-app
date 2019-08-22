@@ -36,7 +36,7 @@
   </build>
   <distributionManagement>
         <repository>
-            <id>maven-snapshots</id>
+            <id>snap-server</id>
             <url>http://192.168.189.145:8081/repository/maven-snapshots/</url>
         </repository>
     </distributionManagement>
