@@ -36,8 +36,8 @@
   </build>
   <distributionManagement>
         <repository>
-            <id>snap-server</id>
-            <url>http://192.168.189.145:8081/repository/maven-snapshots/</url>
+            <id>nexsus-pipe</id>
+            <url>http://18.188.124.223:8081/repository/pipeline-svc/</url>
         </repository>
     </distributionManagement>
 </project>
