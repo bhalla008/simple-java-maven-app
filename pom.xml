@@ -36,7 +36,7 @@
   </build>
   <distributionManagement>
    <snapshotRepository>
-      <id>pipeline-svc</id>
+      <id>nexsus001</id>
       <url>http://3.14.151.194:8081/repository/pipeline-svc</url>
    </snapshotRepository>
 </distributionManagement>
