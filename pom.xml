@@ -36,25 +36,5 @@
             </plugin>
         </plugins>
     </build>
-    <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nxrm3-maven-plugin</artifactId>
-        <version>${project.version}</version>
-        <extensions>true</extensions>
-        <configuration>
-            <nexusUrl>http://localhost:8081</nexusUrl>
-            <!-- The server "id" element from settings to use authentication from settings.xml-->
-            <serverId>local-nexus</serverId>
-            <!-- Which repository to deploy to -->
-            <repository>maven-releases</repository>
-            <!-- Skip the staging deploy mojo -->
-            <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
-        </configuration>
-    </plugin>
-    <repositories>
-        <repository>
-            <id>nexus-snapshots</id>
-            <url>http://18.220.160.96:8081/repository/maven-snapshots/</url>
-        </repository>
-    </repositories>
+    
 </project>
