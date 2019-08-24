@@ -1,39 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <groupId>com.mycompany.app</groupId>
-   <artifactId>my-app</artifactId>
-   <packaging>jar</packaging>
-   <version>1.0-SNAPSHOT</version>
-   <name>my-app</name>
-   <url>http://maven.apache.org</url>
-   <dependencies>
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>4.11</version>
-         <scope>test</scope>
-      </dependency>
-   </dependencies>
-   <build>
-      <plugin>
-         <artifactId>maven-deploy-plugin</artifactId>
-         <version>2.7</version>
-         <executions>
-            <execution>
-               <id>default-deploy</id>
-               <phase>deploy</phase>
-               <goals>
-                  <goal>deploy</goal>
-               </goals>
-            </execution>
-         </executions>
-      </plugin>
-   </build>
-   <distributionManagement>
-      <snapshotRepository>
-         <id>pipeline-svc</id>
-         <url>http://3.14.151.194:8081/repository/pipeline-svc</url>
-      </snapshotRepository>
-   </distributionManagement>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany.app</groupId>
+    <artifactId>my-app</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>my-app</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.mycompany.app.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nxrm3-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+            <nexusUrl>http://localhost:8081</nexusUrl>
+            <!-- The server "id" element from settings to use authentication from settings.xml-->
+            <serverId>local-nexus</serverId>
+            <!-- Which repository to deploy to -->
+            <repository>maven-releases</repository>
+            <!-- Skip the staging deploy mojo -->
+            <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+        </configuration>
+    </plugin>
+    <repositories>
+        <repository>
+            <id>nexus-snapshots</id>
+            <url>http://18.220.160.96:8081/repository/maven-snapshots/</url>
+        </repository>
+    </repositories>
 </project>
